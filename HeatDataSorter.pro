@@ -10,6 +10,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = HeatDataSorter
 TEMPLATE = app
+DESTDIR = ./bin
+OBJECTS_DIR = ./obj
+MOC_DIR = ./moc
+RCC_DIR = ./rcc
+UI_DIR = ./ui
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
