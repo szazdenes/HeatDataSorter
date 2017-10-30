@@ -135,8 +135,20 @@ void MainWindow::SelectAndSaveHeatData(QStringList folderList)
 
                 file.close();
             }
+        }
 
-            qDebug("alma");
+        foreach(QString currentKey, heatDataMap.keys()){
+            QFile outFile(currentFolder.path().remove(currentFolder.path().split("/").last()) + currentKey + ".csv");
+            if (!outFile.open(QIODevice::WriteOnly | QIODevice::Text))
+                addToList(outFile.fileName() + "could not be opened.");
+            QTextStream outStream(&outFile);
+            for(int i = 0; i < heatDataMap[currentKey].size(); i++){
+                outStream << heatDataMap[currentKey].at(i).first + "\t"
+                             + QString::number(heatDataMap[currentKey].at(i).second.first) + "\t"
+                             + QString::number(heatDataMap[currentKey].at(i).second.second) + "\n";
+            }
+            outFile.close();
+            addToList(outFile.fileName() + " writing finished.");
         }
     }
 }
